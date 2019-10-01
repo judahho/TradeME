@@ -1,22 +1,30 @@
 #imports
 import random
 import os
-import goods
-import stocks
-import myObjects
+import savefile
 
 def ingame():
+    #player assets
+    cash = savefile.cash
+    Mgold = savefile.Mgold
+    Msilver = savefile.Msilver
+    Moil = savefile.Moil
+    Mfood = savefile.Mfood
+    Mbsk = savefile.Mbsk
+    Mntsk = savefile.Mntsk
+    Molsk = savefile.Molsk
+    
     while True:
         #random price picks
-        gold = random.randint(int(goods.gold.priceRange))
-        silver = random.randint(int(goods.silver.priceRange))
-        oil = random.randint(int(goods.oil.priceRange))
-        food = random.randint(int(goods.food.priceRange))
-        bsk = random.randint(int(stocks.bsk.priceRange))
-        ntsk = random.randint(int(stocks.ntsk.priceRange))
-        olsk = random.randint(int(stocks.olsk.priceRange))
+        gold = random.randint(70, 300)
+        silver = random.randint(60, 170)
+        oil = random.randint(20, 30)
+        food = random.randint(2, 12)
+        bsk = random.randint(5, 8)
+        ntsk = random.randint(1, 4)
+        olsk = random.randint(5, 9)
 
-        #new info
+        #new turn info
         print("\nCash: $" + str(cash))
         print("Prices:")
         print("  Gold:   $" + str(gold) + " | 70/300")
@@ -28,12 +36,12 @@ def ingame():
         print("  OLSK:   $" + str(olsk) + " | 5/9")
         print("Your Assets:")
         print("  Gold:     " + str(Mgold) + "g")
-        print("  Silver:   " + str(myObjects.mygoods.Msilver) + "g")
-        print("  Oil:      " + str(myObjects.mygoods.Moil) + "L")
-        print("  Food:     " + str(myObjects.mygoods.Mfood) + "kg")
-        print("  BSK:      " + str(myObjects.mystocks.Mbsk))
-        print("  NTSK:     " + str(myObjects.mystocks.Mntsk))
-        print("  OLSK:     " + str(myObjects.mystocks.Molsk))
+        print("  Silver:   " + str(Msilver) + "g")
+        print("  Oil:      " + str(Moil) + "L")
+        print("  Food:     " + str(Mfood) + "kg")
+        print("  BSK:      " + str(Mbsk))
+        print("  NTSK:     " + str(Mntsk))
+        print("  OLSK:     " + str(Molsk))
 
         #actions
         inst = input("What would you like to do: ")
@@ -43,7 +51,7 @@ def ingame():
                 if inst2 == "gold":
                     inst3 = float(input("How many grams: "))
                     if (gold * int(inst3)) <= cash:
-                        myObjects.mygoods.myObjects.mygoods.myObjects.mygoods.Mgold += int(inst3)
+                        Mgold += int(inst3)
                         cash -= (gold * int(inst3))
                         gold += (random.randint(5, 20))
                         del inst3
@@ -57,7 +65,7 @@ def ingame():
                 elif inst2 == "silver":
                     inst3 = float(input("How many grams: "))
                     if (silver * int(inst3)) <= cash:
-                        myObjects.mygoods.Msilver += int(inst3)
+                        Msilver += int(inst3)
                         cash -= (silver * int(inst3))
                         del inst3
                         del inst2
@@ -70,7 +78,7 @@ def ingame():
                 elif inst2 == "food":
                     inst3 = float(input("How many kg(s): "))
                     if (food * int(inst3)) <= cash:
-                        myObjects.mygoods.Mfood += int(inst3)
+                        Mfood += int(inst3)
                         cash -= (food * int(inst3))
                         del inst3
                         del inst2
@@ -83,7 +91,7 @@ def ingame():
                 elif inst2 == "oil":
                     inst3 = input("How many liter(s): ")
                     if (oil * int(inst3)) <= cash:
-                        myObjects.mygoods.Moil += int(inst3)
+                        Moil += int(inst3)
                         cash -= (oil * int(inst3))
                         del inst3
                         del inst2
@@ -96,7 +104,7 @@ def ingame():
                 elif inst2 == "bsk":
                     inst3 = input("How many stocks: ")
                     if (bsk * int(inst3)) <= cash:
-                        myObjects.mystocks.Mbsk += int(inst3)
+                        Mbsk += int(inst3)
                         cash -= (bsk * int(inst3))
                         del inst3
                         del inst2
@@ -109,7 +117,7 @@ def ingame():
                 elif inst2 == "ntsk":
                     inst3 = input("How many stocks: ")
                     if (ntsk * int(inst3)) <= cash:
-                        myObjects.mystocks.Mntsk += int(inst3)
+                        Mntsk += int(inst3)
                         cash -= (ntsk * int(inst3))
                         del inst3
                         del inst2
@@ -122,7 +130,7 @@ def ingame():
                 elif inst2 == "olsk":
                     inst3 = input("How many stocks: ")
                     if (olsk * int(inst3)) <= cash:
-                        myObjects.mystocks.Molsk += int(inst3)
+                        Molsk += int(inst3)
                         cash -= (olsk * int(inst3))
                         del inst3
                         del inst2
@@ -137,52 +145,52 @@ def ingame():
         elif inst == "sell":
             try:
                 inst2 = input("What Would you like to sell: ")
-                if inst2 == "gold" and myObjects.mygoods.Mgold >= 1:
+                if inst2 == "gold" and Mgold >= 1:
                     inst3 = input("How much gold: ")
-                    if int(inst3) <= myObjects.mygoods.Mgold:
-                        myObjects.mygoods.Mgold -= int(inst3)
+                    if int(inst3) <= Mgold:
+                        Mgold -= int(inst3)
                         cash += (gold * int(inst3))
                     else:
                         input("That is more gold than you have.")
-                elif inst2 == "silver" and myObjects.mygoods.Msilver >= 1:
+                elif inst2 == "silver" and Msilver >= 1:
                     inst3 = input("How much silver: ")
-                    if int(inst3) <= myObjects.mygoods.Msilver:
-                        myObjects.mygoods.Msilver -= int(inst3)
+                    if int(inst3) <= Msilver:
+                        Msilver -= int(inst3)
                         cash += (silver * int(inst3))
                     else:
                         input("That is more silver than you have.")
-                elif inst2 == "food" and myObjects.mygoods.Mfood >= 1:
+                elif inst2 == "food" and Mfood >= 1:
                     inst3 = input("How much food: ")
-                    if int(inst3) <= myObjects.mygoods.Mfood:
-                        myObjects.mygoods.Mfood -= int(inst3)
+                    if int(inst3) <= Mfood:
+                        Mfood -= int(inst3)
                         cash += (food * int(inst3))
                     else:
                         input("That is more food than you have.")
-                elif inst2 == "oil" and myObjects.mygoods.Moil >= 1:
+                elif inst2 == "oil" and Moil >= 1:
                     inst3 = input("How much oil: ")
-                    if int(inst3) <= myObjects.mygoods.Moil:
-                        myObjects.mygoods.Moil -= int(inst3)
+                    if int(inst3) <= Moil:
+                        Moil -= int(inst3)
                         cash += (oil * int(inst3))
                     else:
                         input("That is more oil than you have.")
-                elif inst2 == "bsk" and myObjects.mystocks.Mbsk >= 1:
+                elif inst2 == "bsk" and Mbsk >= 1:
                     inst3 = input("How many stocks: ")
-                    if int(inst3) <= myObjects.mystocks.Mbsk:
-                        myObjects.mystocks.Mbsk -= int(inst3)
+                    if int(inst3) <= Mbsk:
+                        Mbsk -= int(inst3)
                         cash += (bsk * int(inst3))
                     else:
                         input("Those are more stocks than you have.")
-                elif inst2 == "ntsk" and myObjects.mystocks.Mntsk >= 1:
+                elif inst2 == "ntsk" and Mntsk >= 1:
                     inst3 = input("How many stocks: ")
-                    if int(inst3) <= myObjects.mystocks.Mntsk:
-                        myObjects.mystocks.Mntsk -= int(inst3)
+                    if int(inst3) <= Mntsk:
+                        Mntsk -= int(inst3)
                         cash += (ntsk * int(inst3))
                     else:
                         input("Those are more stocks than you have.")
-                elif inst2 == "olsk" and myObjects.mystocks.Molsk >= 1:
+                elif inst2 == "olsk" and Molsk >= 1:
                     inst3 = input("How many stocks: ")
-                    if int(inst3) <= myObjects.mystocks.Molsk:
-                        myObjects.mystocks.Molsk -= int(inst3)
+                    if int(inst3) <= Molsk:
+                        Molsk -= int(inst3)
                         cash += (olsk * int(inst3))
                     else:
                         input("Those are more stocks than you have.")

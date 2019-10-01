@@ -1,4 +1,4 @@
-cash = 4228
+cash = 100
 #assets
 Mgold = 0
 Msilver = 0
