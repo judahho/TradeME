@@ -24,7 +24,7 @@ def ingame():
         ntsk = random.randint(1, 4)
         olsk = random.randint(5, 9)
 
-        #new info
+        #new turn info
         print("\nCash: $" + str(cash))
         print("Prices:")
         print("  Gold:   $" + str(gold) + " | 70/300")
