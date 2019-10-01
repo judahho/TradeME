@@ -1,31 +1,28 @@
-#runtime File holds the algorithyms for the main game: TradeME
+#runtime file
 
 #imports
-import stockExchang as SE
-import forex as FX
-import goods as GD
-import logs
-import config
+import random
+
+import classes as CL
 import savefile as SF
 import savegame
-import saveconfig
 
 #variables
-turnCount = SF.turn
-playing = True
-pCash = SF.pCash
+pCash = CL.forex("Cash", 1, 0)
+turn = 1
 
 #functions
-def HELP():
-    #info
-    print("Sorry, no info yet.")
-    #end function
-    input()
-    return
+def newGame():
+    pass
+    #pCash = CL.forex("Cash", 1, 0)
+    #turn = 1
 
 #runtime
-while playing == True:
-    input("Press 'Enter' to start turn" + turnCount + "\n")
-    def gameplay():
-        return
-    turnCount += 1
+def gameplay():
+    while True:
+        input("Press 'Enter' to start turn" + turn + "\n")
+        print(pCash)
+
+gameplay()
+
+input("\nComplete...\n")
