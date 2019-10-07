@@ -1,0 +1,3 @@
+#config
+
+windowRes = 1
