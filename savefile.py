@@ -1,4 +1,5 @@
 cash = 100
+turn = 0
 #assets
 Mgold = 0
 Msilver = 0
