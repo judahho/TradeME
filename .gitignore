@@ -3,5 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#Visual Studio files
+.vscode
+
 # organization files
 planning.md
+
+#poduction
+v2/
