@@ -29,7 +29,7 @@ while True:
         olsk = random.randint(5, 9)
 
         #new turn info
-        print("\n\nTurn: " + str(turn))
+        print("\nTurn: " + str(turn))
         print("Prices:")
         print("  Gold:   $" + str(gold) + " | 70/300")
         print("  Silver: $" + str(silver) + " | 60/170")

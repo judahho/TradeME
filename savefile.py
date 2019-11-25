@@ -1,3 +1,4 @@
+#player progress file
 cash = 100
 #assets
 Mgold = 0
