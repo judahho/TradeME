@@ -4,17 +4,13 @@
 1. Contents
 2. How to Play
 3. Requirements
-4. Release Notes
+4. Release History
 ---------------------------------------------------------------------------------------------------
 ## HOW TO PLAY
-> Playing TradeME v1 is not as easy as I would like to make it. This will probably be made easier in
-> a future release of the game when I add a GUI. For now the game is played in a terminal such as
-> Command Prompt.
+> Playing TradeME v1 is not as easy as I would like to make it. This will probably be made easier in a future release of the game when I add a GUI. For now the game is played in a terminal/console such as Command Prompt.
 
 ### THE ASSETS
-> Assets are the things you can trade in TradeME. They are of different price ranges, never going
-> below a certain price, and never above another. I have listeed below the assets included in TradeME
-> v1.0 and there varring price ranges.
+> Assets are the things you can trade in TradeME. They are of different price ranges, never going below a certain price, and never above another. I have listeed below the assets included in TradeME v1.0 and there varring price ranges.
 
 * Gold (low: 70, high:300)
 * Silver (low: 60, high:170)
@@ -41,10 +37,7 @@
 * "silver": identifys the Silver asset
 
 ### GAMEPLAY
-> Once you run the game, the current turn prices of the assets will be listed followed by the assets
-> you own. You can then choose what action you wish to take. You could buy, sell, pass, save or quit.
-> If you choose to buy or sell, you will then need to identify the asset you wish to trade, followed
-> by the amount. The next turn will then start.
+> Once you run the game, the current turn prices of the assets will be listed followed by the assets you own. You can then choose what action you wish to take. You could buy, sell, pass, save or quit. If you choose to buy or sell, you will then need to identify the asset you wish to trade, followed by the amount. The next turn will then start.
 ---------------------------------------------------------------------------------------------------
 ## REQUIRMENTS
 ### Hardware
@@ -53,7 +46,7 @@
 > Windows XP/7/8/8.1/10
 > Python IDLE
 ---------------------------------------------------------------------------------------------------
-## Release Notes
+## Release History
 ### Version 1.0
 1. This is the game in its original functional form.
 ### Version 1.0.1
