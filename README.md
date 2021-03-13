@@ -46,8 +46,7 @@
 * Windows XP/7/8/8.1/10
 * Python IDLE v3.5 or later
 ---------------------------------------------------------------------------------------------------
-## Release History
-### Version 1.0
-1. This is the game in its original functional form.
-### Version 1.0.1
-1. Now you can complete multiple trades in a single turn.
+## Release Notes [1.0.1]
+
+### Fixed
+* Multiple trades in a single turn
