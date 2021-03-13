@@ -1,6 +1,13 @@
 # CHANGELOG
 
 ## [Unrealesed]
+### Changed
+* API change form script based to class based
+* Market info display:
+    * FROM 
+        * `<asset>: $<price> | <low>/<high>`
+        * `<asset>: <units>`
+    * TO `<asset>: $<price> | <units> | <low>/<high>`
 
 ## [1.0.1]
 
