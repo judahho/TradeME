@@ -8,9 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="Raylib-cs">
-      <HintPath>dll\Raylib-cs.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Raylib-cs" Version="5.0.0" />
   </ItemGroup>
 
 </Project>
