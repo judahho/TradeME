@@ -46,7 +46,7 @@ namespace TradeME
             this.text = txt;
             this.position = new Vector2(0, 0);
             this.fontSize = 10;
-            this.color = Color.BLACK;
+            this.color = Color.Black;
         }
         public Text(string txt, Vector2 pos) : this(txt)
         {
@@ -89,7 +89,7 @@ namespace TradeME
         {
             this.parent = parent;
             this.rectangle = rect;
-            this.color = Color.WHITE;
+            this.color = Color.White;
 
             this.texts = new List<Text>();
             this.buttons = new List<Button>();
