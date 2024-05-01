@@ -1,4 +1,6 @@
-﻿namespace TMEngine;
+﻿using System;
+
+namespace TMEngine;
 
 public static class Mathf
 {
