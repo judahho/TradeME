@@ -1,20 +1,40 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using TMEngine;
 
 namespace TradeME;
 
 public class GameData
 {
     [JsonIgnore (Condition = JsonIgnoreCondition.Never)]
-    public List<Stock> market = new List<Stock>();
+    public List<Commodity> market = new List<Commodity>();
     
     #region Default Game (JSON)
     public const string defaultGame =
 @"{
-""market"" : [
-    {}
-}
+    ""market"" : [
+        {
+            ""name"" : ""Gold"",
+            ""tag"" : ""GLD"",
+            ""entries"" : {}
+        },
+        {
+            ""name"" : ""Silver"",
+            ""tag"" : ""SLV"",
+            ""entries"" : {}
+        },
+        {
+            ""name"" : ""Oil"",
+            ""tag"" : ""OIL"",
+            ""entries"" : {}
+        },
+        {
+            ""name"" : ""Food"",
+            ""tag"" : ""FDD"",
+            ""entries"" : {}
+        }
+    }
 }";
     #endregion
 
@@ -24,7 +44,7 @@ public class GameData
         //GameData? data = JsonSerializer.Deserialize<GameData>(defaultGame);
         //if (data == null) { throw new ArgumentException("Parameter cannot deserialize", nameof(defaultGame)); }
 
-        market = new List<Stock>();//data.market;
+        market = new List<Commodity>();//data.market;
     }
     public GameData(string json)
     {

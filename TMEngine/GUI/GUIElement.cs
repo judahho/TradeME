@@ -2,7 +2,7 @@
 using System.Numerics;
 using Raylib_cs;
 
-namespace TradeME.GUI;
+namespace TMEngine.GUI;
 
 public abstract class GUIElement
 {

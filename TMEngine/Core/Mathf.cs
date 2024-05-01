@@ -1,6 +1,6 @@
-﻿namespace TradeME;
+﻿namespace TMEngine;
 
-public class Mathf
+public static class Mathf
 {
     // random intager from 0 to 'maxExclusive'
     public static int Range(int maxExclusive)

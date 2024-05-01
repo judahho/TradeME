@@ -1,26 +1,27 @@
 ﻿using Raylib_cs;
 
 namespace TradeME;
-using TradeME.GUI;
+using TMEngine;
+using TMEngine.GUI;
 
 internal static class Program
 {
     #region Progeam Properties
-    public static string name = "TradME";
-    public static string version = "2.0.0";
+    public const string name = "TradME";
+    public const string version = "2.0.0";
     #endregion
 
     #region Game Properties
     public static GameData data = new GameData();
     public static UI ui = new UI(UIScreen.Stock);
-    public static Stock activeStock {
+    public static Commodity activeStock {
         get {
             if (data.market.Count > 0)
             {
                 return data.market[0];
             } else
             {
-                return new Stock("Null Stock", "NUL", 100);
+                return new Commodity("Null Stock", "NUL", 100);
             }
         }
     }
@@ -29,12 +30,12 @@ internal static class Program
     #region Methods
     public static void Init() {
         GameData data = new GameData();
-        Stock stock = new Stock("Apple", "APPL", 100);
+        /*Commodity stock = new Commodity("Apple", "APPL", 100);
         data.market.Add(stock);
-        stock = new Stock("Microsoft", "MSFT", 100);
+        stock = new Commodity("Microsoft", "MSFT", 100);
         data.market.Add(stock);
-        stock = new Stock("Samsung", "SAMG", 100);
-        data.market.Add(stock);
+        stock = new Commodity("Samsung", "SAMG", 100);
+        data.market.Add(stock);*/
     }
     public static void Update() {
         

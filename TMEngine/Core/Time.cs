@@ -1,6 +1,6 @@
 ﻿using Raylib_cs;
 
-namespace TradeME;
+namespace TMEngine;
 
 public class Time
 {

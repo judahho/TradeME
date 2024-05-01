@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Text.Json.Serialization;
 
-namespace TradeME;
+namespace TMEngine;
 
 public struct Entry
 {

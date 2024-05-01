@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using Raylib_cs;
 
-namespace TradeME.GUI;
+namespace TMEngine.GUI;
 
 public class Graph : GUIElement
 {
@@ -17,9 +17,9 @@ public class Graph : GUIElement
     }
     #endregion
 
-    public Stock stock;
+    public Commodity stock;
 
-    public Graph(Stock stock, Rectangle rect, Panel? panel = null) : base(rect, Color.Gray, panel) {
+    public Graph(Commodity stock, Rectangle rect, Panel? panel = null) : base(rect, Color.Gray, panel) {
         this.stock = stock;
     }
 

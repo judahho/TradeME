@@ -2,9 +2,9 @@
 
 using System.Text.Json.Serialization;
 
-namespace TradeME;
+namespace TMEngine;
 
-public class Stock
+public class Commodity
 {
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public string name = "Stock";
@@ -37,13 +37,13 @@ public class Stock
     [JsonIgnore] public Entry[] month = new Entry[28];
 
     #region Constructors
-    public Stock(string name, string tag, float price)
+    public Commodity(string name, string tag, float price)
     {
         this.name = name;
         this.tag = tag;
         this.entries.Add(new Entry(price));
     }
-    public Stock(string name, string tag, List<Entry> e)
+    public Commodity(string name, string tag, List<Entry> e)
     {
         this.name = name;
         this.tag = tag;
@@ -54,11 +54,11 @@ public class Stock
     #region Operators
     [JsonIgnore] public Entry this[int index] => entries[entries.Count - index - 1];
 
-    public static Stock operator +(Stock lhs, Entry rhs)
+    public static Commodity operator +(Commodity lhs, Entry rhs)
     {
         lhs.entries.Add(rhs);
         return lhs;
     }
-    public static Stock operator +(Entry lhs, Stock rhs) { return rhs + lhs; }
+    public static Commodity operator +(Entry lhs, Commodity rhs) { return rhs + lhs; }
     #endregion
 }

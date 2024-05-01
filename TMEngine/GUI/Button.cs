@@ -1,6 +1,6 @@
 ﻿using Raylib_cs;
 
-namespace TradeME.GUI;
+namespace TMEngine.GUI;
 
 public class Button : GUIElement {
     public Text? text;

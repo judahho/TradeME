@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using Raylib_cs;
 
-namespace TradeME.GUI;
+namespace TMEngine.GUI;
 
 public enum UIScreen { MainMenu, Market, Stock }
 public class UI
@@ -20,7 +20,7 @@ public class UI
                 throw new NotImplementedException();
             case UIScreen.Stock:
                 new Text("Stock", new Rectangle(), masterPanel);
-                new Graph(Program.activeStock, new Rectangle(10, 10, 200, 100), masterPanel);
+                //new Graph(Program.activeStock, new Rectangle(10, 10, 200, 100), masterPanel);
                 break;
             default:
                 throw new Exception("Invalid UIScreen");
