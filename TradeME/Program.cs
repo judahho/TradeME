@@ -1,45 +1,20 @@
-﻿using Raylib_cs;
-
-namespace TradeME;
+﻿using System.Collections.Generic;
+using Raylib_cs;
 using TMEngine;
 using TMEngine.GUI;
 
+namespace TradeME;
+
 internal static class Program
 {
-    #region Progeam Properties
+    #region Constant Properties
     public const string name = "TradME";
     public const string version = "2.0.0";
     #endregion
 
-    #region Game Properties
-    public static GameData data = new GameData();
-    public static UI ui = new UI(UIScreen.Stock);
-    public static Commodity activeStock {
-        get {
-            if (data.market.Count > 0)
-            {
-                return data.market[0];
-            } else
-            {
-                return new Commodity("Null Stock", "NUL", 100);
-            }
-        }
-    }
-    #endregion
-
-    #region Methods
-    public static void Init() {
-        GameData data = new GameData();
-        /*Commodity stock = new Commodity("Apple", "APPL", 100);
-        data.market.Add(stock);
-        stock = new Commodity("Microsoft", "MSFT", 100);
-        data.market.Add(stock);
-        stock = new Commodity("Samsung", "SAMG", 100);
-        data.market.Add(stock);*/
-    }
-    public static void Update() {
-        
-    }
+    #region Static Fields
+    public static GameData data = new();
+    public static UI ui = new();
     #endregion
 
     static void Main(string[] args) {
@@ -47,12 +22,20 @@ internal static class Program
         Raylib.InitWindow(800, 480, "TradeME");
         Raylib.SetTargetFPS(60);
 
-        Init();
+        Stock gold = new Stock("Some Software Company Co.", "SSC", 40);
+        data.market.Add(gold);
+
+        ui = new StockUI(gold);
         #endregion
 
         #region Main
         while (!Raylib.WindowShouldClose()) {
             //SECTION : Pre-Draw
+            Time.UpdateTime();
+
+            foreach (Commodity commodity in data.market) {
+                commodity.Tick();
+            }
             //!SECTION
 
             //SECTION : Start Draw
@@ -67,7 +50,6 @@ internal static class Program
             //SECTION : End Draw
             //Raylib.DrawFPS(0, 0);
             Raylib.EndDrawing();
-            Time.UpdateTime();
             //!SECTION
         }
         #endregion

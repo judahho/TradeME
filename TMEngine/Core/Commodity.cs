@@ -1,18 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text.Json.Serialization;
 
 namespace TMEngine;
 
-public class Commodity
+public abstract class Commodity
 {
+    public static float period = 10;
+    #region Fields
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public string name = "Stock";
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public string tag = "STK";
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public List<Entry> entries = new List<Entry>();
+    #endregion
 
+    #region Properties
     [JsonIgnore] public float price
     {
         get
@@ -21,9 +27,8 @@ public class Commodity
             return entries.Last().price;
         }
     }
-
-    // divides the entries to 24 per day and returns the most recent da
-    [JsonIgnore] public Entry[] today
+    /// <summary> Divides the entries to 24 per day and returns the most recent day. </summary>
+    [JsonIgnore] public Entry[] Today
     {
         get
         {
@@ -33,8 +38,9 @@ public class Commodity
             return list.ToArray();
         }
     }
-    [JsonIgnore] public Entry[] week = new Entry[7];
-    [JsonIgnore] public Entry[] month = new Entry[28];
+    [JsonIgnore] public Entry[] Week { get { return new Entry[7]; } }
+    [JsonIgnore] public Entry[] Month { get { return new Entry[28]; } }
+    #endregion
 
     #region Constructors
     public Commodity(string name, string tag, float price)
@@ -43,11 +49,11 @@ public class Commodity
         this.tag = tag;
         this.entries.Add(new Entry(price));
     }
-    public Commodity(string name, string tag, List<Entry> e)
+    public Commodity(string name, string tag, List<Entry> entries)
     {
         this.name = name;
         this.tag = tag;
-        this.entries = e;
+        this.entries = entries;
     }
     #endregion
 
@@ -60,5 +66,16 @@ public class Commodity
         return lhs;
     }
     public static Commodity operator +(Entry lhs, Commodity rhs) { return rhs + lhs; }
+    #endregion
+
+    #region Methods
+    public virtual void Tick() {
+        Random random = new();
+        Entry entry = entries.Last();
+        entry.price += (float)random.NextDouble()  * Time.deltaTime * 100 * (random.NextDouble() > .5 ? 1 : -1);
+        entries[^1] = entry;
+        
+        if (Time.unscaledTime - entry.time > period) { entries.Add(new Entry(entry.price)); }
+    }
     #endregion
 }

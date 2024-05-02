@@ -2,7 +2,7 @@
 
 namespace TMEngine;
 
-public class Time
+public static class Time
 {
     public static float time {  get; private set; }
     public static float unscaledTime

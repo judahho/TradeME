@@ -56,9 +56,11 @@ public class GameData
     }
     #endregion
 
+    #region Methods
     public string GetJson()
     {
         var options = new JsonSerializerOptions { WriteIndented = true };
         return JsonSerializer.Serialize(this, options);
     }
+    #endregion
 }
