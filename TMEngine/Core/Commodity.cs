@@ -8,7 +8,10 @@ namespace TMEngine;
 
 public abstract class Commodity
 {
+    /// <summary> Percent chance the price goes down. </summary>
+    public const float bearPercent = .489f;
     public static float period = 10;
+
     #region Fields
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public string name = "Stock";
@@ -16,10 +19,12 @@ public abstract class Commodity
     public string tag = "STK";
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public List<Entry> entries = new List<Entry>();
+    [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+    public float volatility;
     #endregion
 
     #region Properties
-    [JsonIgnore] public float price
+    [JsonIgnore] public float Price
     {
         get
         {
@@ -27,33 +32,23 @@ public abstract class Commodity
             return entries.Last().price;
         }
     }
-    /// <summary> Divides the entries to 24 per day and returns the most recent day. </summary>
-    [JsonIgnore] public Entry[] Today
-    {
-        get
-        {
-            List<Entry> list = new List<Entry>();
-            int z = entries.Count - ((entries.Count % 24 == 0) ? 24 : (entries.Count % 24));
-            for (int i = z - 1; i < entries.Count; i++) { list.Add(entries[i]); }
-            return list.ToArray();
-        }
-    }
-    [JsonIgnore] public Entry[] Week { get { return new Entry[7]; } }
-    [JsonIgnore] public Entry[] Month { get { return new Entry[28]; } }
+    [JsonIgnore] public bool Bankrupt { get { return Price <= 0; }}
     #endregion
 
     #region Constructors
-    public Commodity(string name, string tag, float price)
+    public Commodity(string name, string tag, float price, float volatility = .01f)
     {
         this.name = name;
         this.tag = tag;
         this.entries.Add(new Entry(price));
+        this.volatility = volatility;
     }
-    public Commodity(string name, string tag, List<Entry> entries)
+    public Commodity(string name, string tag, List<Entry> entries, float volatility = .01f)
     {
         this.name = name;
         this.tag = tag;
         this.entries = entries;
+        this.volatility = volatility;
     }
     #endregion
 
@@ -70,9 +65,11 @@ public abstract class Commodity
 
     #region Methods
     public virtual void Tick() {
+        if (Price <= 0) { return; }
+
         Random random = new();
         Entry entry = entries.Last();
-        entry.price += (float)random.NextDouble()  * Time.deltaTime * 100 * (random.NextDouble() > .5 ? 1 : -1);
+        entry.price += (float)random.NextDouble() * (Price * volatility) * (random.NextDouble() > bearPercent ? 1 : -1) * (Time.deltaTime * 100);
         entries[^1] = entry;
         
         if (Time.unscaledTime - entry.time > period) { entries.Add(new Entry(entry.price)); }

@@ -22,10 +22,10 @@ internal static class Program
         Raylib.InitWindow(800, 480, "TradeME");
         Raylib.SetTargetFPS(60);
 
-        Stock gold = new Stock("Some Software Company Co.", "SSC", 40);
-        data.market.Add(gold);
+        Stock com = new Stock("Some Software Company Co.", "SSC", 40);
+        data.market.Add(com);
 
-        ui = new StockUI(gold);
+        ui = new StockUI(com);
         #endregion
 
         #region Main

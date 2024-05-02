@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace TMEngine;
 
@@ -43,7 +44,12 @@ public struct Entry
 
     public Entry(Entry[] entries) : this(entries[0].ExitPrice, entries[0].EnterPrice, entries[0].MaxPrice, entries[0].MinPrice)
     {
-        for (int i = 1; i < entries.Length; i++) { this.price = entries[i].price; }
+        for (int i = 1; i < entries.Length; i++) { 
+            this.price = entries[i].MaxPrice;
+            this.price = entries[i].MinPrice;
+            this.price = entries[i].price; 
+        }
     }
+    public Entry(List<Entry> entries) : this(entries.ToArray()) {}
     #endregion
 }
