@@ -15,6 +15,9 @@ public class Text : GUIElement
     public Text(string text, Rectangle rect, Color color, Panel? panel = null) : this(text, 10, rect, color, panel) {}
     public Text(string text, int fontSize, Rectangle rect, Panel? panel = null) : this(text, fontSize, rect, Color.Black, panel) {}
     public Text(string text, Rectangle rect, Panel? panel = null) : this(text, 10, rect, Color.Black, panel) {}
+    public Text(string text, int fontSize, Color color, Panel? panel = null) : this(text, fontSize, new Rectangle(), color, panel) {}
+    public Text(string text, int fontSize, Panel? panel = null) : this(text, fontSize, new Rectangle(), Color.Black, panel) {}
+    public Text(string text, Panel? panel = null) : this(text, 10, new Rectangle(), Color.Black, panel) {}
 
     public override void Draw()
     {

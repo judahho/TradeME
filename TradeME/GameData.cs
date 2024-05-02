@@ -9,7 +9,7 @@ namespace TradeME;
 public class GameData
 {
     [JsonIgnore (Condition = JsonIgnoreCondition.Never)]
-    public List<Commodity> market = new List<Commodity>();
+    public List<Stock> market = [];
     
     #region Default Game (JSON)
     public const string defaultGame =
@@ -45,7 +45,7 @@ public class GameData
         //GameData? data = JsonSerializer.Deserialize<GameData>(defaultGame);
         //if (data == null) { throw new ArgumentException("Parameter cannot deserialize", nameof(defaultGame)); }
 
-        market = new List<Commodity>();//data.market;
+        market = [];//data.market;
     }
     public GameData(string json)
     {

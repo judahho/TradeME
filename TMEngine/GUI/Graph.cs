@@ -18,7 +18,6 @@ public class Graph : GUIElement
     }
 
     #region Methods
-
     public override void Draw()
     {
         // graph values
@@ -42,6 +41,9 @@ public class Graph : GUIElement
             DrawBar(j, commodity.entries[i], rangeEntry, range);
         }
     }
+    #endregion
+
+    #region Private Methods
     /// <summary>
     /// Draw a bar on the graph.
     /// </summary>

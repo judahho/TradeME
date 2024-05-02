@@ -15,17 +15,21 @@ internal static class Program
     #region Static Fields
     public static GameData data = new();
     public static UI ui = new();
+    public static int marketViewIndex = 0;
     #endregion
 
     static void Main(string[] args) {
         #region Startup
-        Raylib.InitWindow(800, 480, "TradeME");
+        Raylib.InitWindow(800, 450, "TradeME");
         Raylib.SetTargetFPS(60);
 
-        Stock com = new Stock("Some Software Company Co.", "SSC", 40);
-        data.market.Add(com);
+        data.market.Add(new Stock("Some Software Company Co.", "SSC", 80));
+        data.market.Add(new Stock("Another Software Company LLC", "ASC", 40));
+        data.market.Add(new Stock("The Car Company Co.", "TCC", 100));
+        data.market.Add(new Stock("Chain Super Stores Co.", "CSS", 100));
+        data.market.Add(new Stock("Uncle Sam's Power LLC", "USP", 80));
 
-        ui = new StockUI(com);
+        ui = new StockUI(data.market[marketViewIndex]);
         #endregion
 
         #region Main
