@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Text.Json.Serialization;
 
 namespace TMEngine;
@@ -63,7 +62,7 @@ public abstract class Commodity
     public static Commodity operator +(Entry lhs, Commodity rhs) { return rhs + lhs; }
     #endregion
 
-    #region Methods
+    #region Override Methods
     public virtual void Tick() {
         if (Price <= 0) { return; }
 

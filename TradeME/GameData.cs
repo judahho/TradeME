@@ -9,11 +9,17 @@ namespace TradeME;
 public class GameData
 {
     [JsonIgnore (Condition = JsonIgnoreCondition.Never)]
+    public Player player;
+    [JsonIgnore (Condition = JsonIgnoreCondition.Never)]
     public List<Stock> market = [];
     
     #region Default Game (JSON)
     public const string defaultGame =
 @"{
+    ""player"" : {
+        ""money"" : 1000,
+        ""properties"" : []
+    },
     ""market"" : [
         {
             ""name"" : ""Gold"",
@@ -43,15 +49,14 @@ public class GameData
     public GameData()
     {
         //GameData? data = JsonSerializer.Deserialize<GameData>(defaultGame);
-        //if (data == null) { throw new ArgumentException("Parameter cannot deserialize", nameof(defaultGame)); }
-
-        market = [];//data.market;
+        //if (data == null) { throw new ArgumentException("Parameter cannot deserialize", nameof(defaultGame));
+        this.player = new Player(1000); //data.player;
+        this.market = [];//data.market;
     }
     public GameData(string json)
     {
-        GameData? data = JsonSerializer.Deserialize<GameData>(json);
-        if (data == null) { throw new ArgumentException("Parameter cannot deserialize", nameof(json)); }
-
+        GameData? data = JsonSerializer.Deserialize<GameData>(json) ?? throw new ArgumentException("Parameter cannot deserialize", nameof(json));
+        this.player = data.player;
         market = data.market;
     }
     #endregion

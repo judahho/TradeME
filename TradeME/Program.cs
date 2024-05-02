@@ -62,4 +62,30 @@ internal static class Program
         Raylib.CloseWindow();
         #endregion
     }
+
+    #region Methods
+    public static void Buy(Commodity commodity, uint ammount) {
+        if (data.player.money >= commodity.Price * ammount) {
+            Player.Property? property = data.player.properties.Find(property => property.commodity == commodity);
+            if (property != null) {
+                property.units += ammount;
+            } else {
+                data.player.properties.Add(new Player.Property(commodity, ammount));
+            }
+            data.player.money -= commodity.Price * ammount;
+        }
+    }
+    public static void Sell(Commodity commodity, uint amount) {
+        Player.Property? property = data.player.properties.Find(property => property.commodity == commodity);
+        if (property != null) {
+            if (property.units >= amount) {
+                property.units -= amount;
+                data.player.money += commodity.Price * amount;
+            }
+            if (property.units <= 0) {
+                data.player.properties.Remove(property);
+            }
+        }
+    }
+    #endregion
 }
